@@ -18,5 +18,35 @@ void test_validate_my_username()
      * TODO: Replace the line below with your code here as described above to verify your /conf/username.txt 
      * config file and my_username() functions are setup properly
      */
-    TEST_ASSERT_TRUE_MESSAGE(false,"AESD students, please fix me!");
-}
+    /*TEST_ASSERT_TRUE_MESSAGE(false,"AESD students, please fix me!");
+*/
+    // 1. Call the my_username() function.
+/*   const char *hardcoded_username = my_username();
+    if (hardcoded_username == NULL) {
+        TEST_FAIL_MESSAGE("my_username() returned NULL");
+        return; // Exit the test if my_username fails.
+    }
+
+    // 2. Obtain the value returned from malloc_username_from_conf_file().
+    char *file_username = malloc_username_from_conf_file();
+    if (file_username == NULL) {
+        TEST_FAIL_MESSAGE("malloc_username_from_conf_file() returned NULL");
+        free(hardcoded_username); // Clean up allocated memory.
+        return; // Exit the test if malloc_username_from_conf_file fails.
+    }
+
+    // 3. Use TEST_ASSERT_EQUAL_STRING_MESSAGE to verify the strings are equal.
+    TEST_ASSERT_EQUAL_STRING_MESSAGE(hardcoded_username, file_username,
+                                     "The username from my_username() does not match the username from the configuration file.");
+
+    // Clean up allocated memory to prevent memory leaks.
+    free(hardcoded_username);
+    free(file_username);*/
+
+    const char* projected_username = my_username();
+    const char* real_username = malloc_username_from_conf_file();
+    TEST_ASSERT_EQUAL_STRING_MESSAGE(projected_username, real_username, "FAILED");
+}  
+
+
+

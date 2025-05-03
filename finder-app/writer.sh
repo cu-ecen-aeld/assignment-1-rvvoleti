@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Check if the correct number of arguments are provided
+if [ "$#" -ne 2 ]; then
+  echo "Error: Two arguments are required: <writefile> <writestr>"
+  exit 1
+fi
+
+# Store the arguments in variables
+writefile="$1"
+writestr="$2"
+
+# Create the directory if it doesn't exist
+dir=$(dirname "$writefile")
+if [ ! -d "$dir" ]; then
+  mkdir -p "$dir"
+  if [ "$?" -ne 0 ]; then
+    echo "Error: Could not create directory '$dir'"
+    exit 1
+  fi
+fi
+
+# Write the string to the file, overwriting any existing content
+echo "$writestr" > "$writefile"
+
+# Check if the file was written successfully
+if [ ! -f "$writefile" ]; then
+  echo "Error: Could not write to file '$writefile'"
+  exit 1
+fi
+
+exit 0
